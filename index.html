@@ -200,24 +200,23 @@
 <section id="contato" class="bg-gray-800 py-10">
   <div class="max-w-md mx-auto text-center text-white">
     <h2 class="text-2xl font-bold mb-6">Entre em Contato</h2>
-    <form class="bg-gray-900 p-6 rounded-lg shadow-lg">
-      <div class="relative z-0 w-full mb-5 group text-center">
+    <form id="contactForm" class="bg-gray-900 p-6 rounded-lg shadow-lg">
+      <div class="mb-5 text-left">
         <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Nome</label>
-        <input type="text" name="name" id="name" class="block w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        <input type="text" id="name" name="name" class="w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg" required />
       </div>
-      <div class="relative z-0 w-full mb-5 group text-center">
+      <div class="mb-5 text-left">
         <label for="email" class="block text-sm font-medium text-gray-400 mb-1">E-mail</label>
-        <input type="email" name="email" id="email" class="block w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+        <input type="email" id="email" name="email" class="w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg" required />
       </div>
-      <div class="relative z-0 w-full mb-5 group text-center">
+      <div class="mb-5 text-left">
         <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Mensagem</label>
-        <textarea name="message" id="message" rows="4" class="block w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+        <textarea id="message" name="message" rows="4" class="w-full py-2.5 px-4 text-sm text-white bg-gray-800 border border-gray-600 rounded-lg" required></textarea>
       </div>
       <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg">Enviar</button>
     </form>
   </div>
 </section>
-
 
 
 
@@ -281,6 +280,17 @@
   </div>
   
   <script>
+ document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // impede o envio normal do formulário
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const mailtoLink = `mailto:andre.vasconcelosfr@gmail.com?subject=Contato de ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nEmail para resposta: " + email)}`;
+    
+    window.location.href = mailtoLink;
+  });
     document.getElementById("testLink").addEventListener("click", function () {
     console.log("Link clicado!");
   });
